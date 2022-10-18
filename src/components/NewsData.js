@@ -50,7 +50,7 @@ export class News extends Component {
 
     async componentDidMount() {
         // let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=b43d8ad773834747be912330a644a8fc&page=1&pageSize=${this.props.pageSize}`;
-        let url = `https://newsdata.io/api/1/news?apikey=pub_12401e0d115acff06c577988eb6b06e9218fa&page=1`;
+        let url = `https://newsdata.io/api/1/news?country=in&apikey=pub_124018cd6af1e87e7f0755851c990d504bb46&page=1`;
         let data = await fetch(url);
         let parseData = await data.json();
         console.log(parseData);
@@ -63,7 +63,7 @@ export class News extends Component {
     fetchMoreData = async () => {
         this.setState({page: this.state.page+1});
         // let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=b43d8ad773834747be912330a644a8fc&page=${this.state.page}&pageSize=${this.props.pageSize}`;
-        let url = `https://newsdata.io/api/1/news?apikey=pub_12401e0d115acff06c577988eb6b06e9218fa&page=${this.state.page}`;
+        let url = `https://newsdata.io/api/1/news?country=in&apikey=pub_124018cd6af1e87e7f0755851c990d504bb46&page=${this.state.page}`;
         // this is used to set loading true until the data is fetched , once data fetched by we await and then we again set loading: false
         let data = await fetch(url);
         let parseData = await data.json();
