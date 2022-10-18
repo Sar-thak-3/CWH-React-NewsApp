@@ -21,6 +21,7 @@ export class News extends Component {
         category: PropTypes.string,
     }
 
+
     capitalizeFirstLetter = (string) => {
         return string.charAt(0).toUpperCase() + string.slice(1);
     }
@@ -38,7 +39,7 @@ export class News extends Component {
 
     async updateNews(){
         this.props.setProgress(10);
-        const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=b43d8ad773834747be912330a644a8fc&page=1&pageSize=${this.props.pageSize}`;
+        const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}&page=1&pageSize=${this.props.pageSize}`;
         let data = await fetch(url);
         this.props.setProgress(30);
         let parseData = await data.json();
@@ -49,11 +50,12 @@ export class News extends Component {
 
     async componentDidMount() {
         this.updateNews();
+        console.log(this.props.apiKey);
     }
 
     fetchMoreData = async () => {
         this.setState({page: this.state.page+1});
-        let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=b43d8ad773834747be912330a644a8fc&page=${this.state.page}&pageSize=${this.props.pageSize}`;
+        let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}&page=${this.state.page}&pageSize=${this.props.pageSize}`;
         // this is used to set loading true until the data is fetched , once data fetched by we await and then we again set loading: false
         let data = await fetch(url);
         let parseData = await data.json();
